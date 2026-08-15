@@ -1,0 +1,4 @@
+from django.urls import path
+from .views import ProcedureCreateView, ProcedureDeleteView, ProcedureDetailView, ProcedureListView, ProcedureUpdateView, SessionCreateView, SessionDeleteView, SessionUpdateView
+app_name = "laser"
+urlpatterns = [path("", ProcedureListView.as_view(), name="list"), path("novo/", ProcedureCreateView.as_view(), name="create"), path("<int:pk>/editar/", ProcedureUpdateView.as_view(), name="update"), path("<int:pk>/excluir/", ProcedureDeleteView.as_view(), name="delete"), path("<int:pk>/", ProcedureDetailView.as_view(), name="detail"), path("<int:procedure_pk>/sessoes/nova/", SessionCreateView.as_view(), name="session_create"), path("sessoes/<int:pk>/editar/", SessionUpdateView.as_view(), name="session_update"), path("sessoes/<int:pk>/excluir/", SessionDeleteView.as_view(), name="session_delete")]

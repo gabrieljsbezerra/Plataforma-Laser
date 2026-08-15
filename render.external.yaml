@@ -1,0 +1,25 @@
+services:
+  - type: web
+    name: plataforma-laser
+    env: docker
+    plan: starter
+    dockerfilePath: Dockerfile
+    startCommand: ./entrypoint.sh
+    autoDeploy: true
+    envVars:
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DJANGO_SECRET_KEY
+        scope: env
+      - key: DJANGO_ALLOWED_HOSTS
+        value: "your-app.onrender.com"
+      - key: DATABASE_URL
+        scope: env
+      - key: CLOUDINARY_URL
+        scope: env
+
+# Notes:
+# - This configuration assumes you will provide an external DATABASE_URL (e.g., Supabase).
+# - Make `entrypoint.sh` executable before pushing: `chmod +x entrypoint.sh`.
+# - Set `DJANGO_SECRET_KEY`, `DATABASE_URL` and `CLOUDINARY_URL` in the Render dashboard (or use the render CLI) as secret environment variables.
+# - Use `plan: free` for testing, but choose `starter` for production to avoid sleep and gain stability.

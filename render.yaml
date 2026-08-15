@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: plataforma-laser
+    env: docker
+    plan: starter
+    dockerfilePath: Dockerfile
+    startCommand: gunicorn config.wsgi:application --bind 0.0.0.0:8000 --workers 3
+    autoDeploy: true
+    envVars:
+      - key: DJANGO_DEBUG
+        value: "False"
+      - key: DJANGO_SECRET_KEY
+        scope: env
+
+databases:
+  - name: plataforma-db
+    engine: postgresql
+    plan: starter
+
+# Notes:
+# - After creating the service, configure the secret vars (DJANGO_SECRET_KEY, DATABASE_URL, CLOUDINARY_URL) in Render's dashboard or via `render` CLI.
+# - For a lower-cost start you can change `plan: starter` to `plan: free`, but free has limitations (sleep, ephemeral storage).

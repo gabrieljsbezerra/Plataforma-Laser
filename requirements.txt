@@ -1,0 +1,11 @@
+Django>=5.2,<6.0
+psycopg[binary]>=3.2
+Pillow>=11.0
+django-filter>=25.1
+django-widget-tweaks>=1.5
+whitenoise>=6.9
+gunicorn>=23.0
+python-dotenv>=1.1
+dj-database-url>=1.0
+django-cloudinary-storage>=0.4.0
+cloudinary>=1.31.0
